@@ -16,14 +16,15 @@ class ApartmentCreateView(CreateView):
     success_url = '/apartments/apartments-list/'
 
 def list_apartments_search(request):
-    #print(request.method)
+    print(request.GET['search'])
     if 'search' in request.GET:
         search = request.GET['search']
-        apartments = Apartment.objects.filter(door_number__icontains=search)        
+        apartment = Apartment.objects.filter(door_number__icontains=search)   
+    #    print(type(apartment[0].door_number))     
     else:
-        apartments = Apartment.objects.all()
+        apartment = Apartment.objects.all()
     context = {
-        'apartments':apartments,
+        'apartment':apartment,
     }
     #print(context)    
     return render(request, 'apartments/apartments-list.html', context=context)
