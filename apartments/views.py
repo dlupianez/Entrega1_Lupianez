@@ -19,13 +19,13 @@ def list_apartments_search(request):
     print(request.GET['search'])
     if 'search' in request.GET:
         search = request.GET['search']
-        apartment = Apartment.objects.filter(door_number__icontains=search)   
-    #    print(type(apartment[0].door_number))     
+        apartments = Apartment.objects.filter(door_number__icontains=search)   
+        #print(type(apartment[0].door_number))     
     else:
-        apartment = Apartment.objects.all()
+        apartments = Apartment.objects.all()
     context = {
-        'apartment':apartment,
+        'apartments':apartments,
     }
-    #print(context)    
-    return render(request, 'apartments/apartments-list.html', context=context)
+    print(context)    
+    return render(request, 'apartments/apartments-list-search.html', context=context)
 
