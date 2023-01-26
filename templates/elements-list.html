@@ -1,42 +1,41 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    About me
+    Elements list
 {% endblock %}
 
 {% block content %}
 
-    <!-- About Section Start -->
-    <section id="about" class="section-padding">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                {% load static %}
-                <img class="img-fluid" src="{% static 'images/profile2.jpg' %}" alt="">
-              </div>
-            </div> 
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-              <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s">
-                <h3>{{greet}}</h3>
-                <p>{{excerpt}}</p>
-                <div class="about-profile">
-                  <ul class="admin-profile">
-                    <li><span class="pro-title"> Name: </span> <span class="pro-detail">{{name}}</span></li>
-                    <li><span class="pro-title"> Age: </span> <span class="pro-detail">{{age}}</span></li>
-                    <li><span class="pro-title"> Project: </span> <span class="pro-detail">{{project}}</span></li>
-                    <li><span class="pro-title"> Country: </span> <span class="pro-detail">{{country}}</span></li>
-                    <li><span class="pro-title"> Location: </span> <span class="pro-detail">{{location}}</span></li>
-                  </ul>
-                </div>
-                <a href="#" class="btn btn-common"><i class="icon-paper-clip"></i> Download Resume</a>
-                <a href="#" class="btn btn-danger"><i class="icon-speech"></i> Contact Me</a>
-              </div>
-            </div>   
-          </div>
-        </div>
-      </section>
-      <!-- About Section End -->
+    <h1>Apartments list</h1>
     
-
+    {% for apartment in apartments %}
+    <ul class="list-group">
+        <li class="list-group-item active"><b>Apartment number: {{apartment.door_number}}</b></li>
+        <li class="list-group-item">Rental value: {{apartment.rental_value}}</li>
+        <li class="list-group-item">Garage value: {{apartment.garage_value}}</li>
+        <li class="list-group-item">Expenses value: {{apartment.expenses_value}}</li>
+        <li class="list-group-item">Total value: {{apartment.total_value}}</li>
+    </ul>
+    <br>        
+    {% endfor %}
+    <h1>Rentals list</h1>
+    {% for rent in rents %}
+    <ul class="list-group">
+        <li class="list-group-item active"><b>Payday: {{rent.payday}}</b></li>
+        <li class="list-group-item">Total paid: {{rent.total_paid}}</li>
+        <li class="list-group-item">Debt: {{rent.debt}}</li>
+        <li class="list-group-item">Receipt of payment: {{rent.receipt_of_payent}}</li>
+    </ul>
+    <br>    
+    {% endfor %}
+    <h1>Tenants list</h1>
+    {% for tenant in tenants %}    
+    <ul class="list-group">
+        <li class="list-group-item active"><b>Name: {{tenant.name}}</b></li>
+        <li class="list-group-item">Lastname: {{tenant.lastname}}</li>
+        <li class="list-group-item">E-mail: {{tenant.email}}</li>
+        <li class="list-group-item">Phone: {{tenant.phone}}</li>
+    </ul>
+    <br>               
+    {% endfor %}
 {% endblock %}

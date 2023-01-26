@@ -1,5 +1,8 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from apartments.models import Apartment
+from rentals.models import Rent
+from tenants.models import Tenant
 
 def about_me(request):
     context = {
@@ -14,3 +17,13 @@ def about_me(request):
     }
     return render(request, 'about/about-me.html', context=context)
 
+def elements_list(request):
+    all_apartments = Apartment.objects.all()
+    all_rents = Rent.objects.all()
+    all_tenants = Tenant.objects.all()
+    context = {
+        'apartments':all_apartments,
+        'rents':all_rents,
+        'tenants':all_tenants,
+    }
+    return render(request, 'elements-list.html', context=context)
