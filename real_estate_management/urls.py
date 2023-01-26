@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from real_estate_management.views import about_me
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rentals/', include('rentals.urls')),
     path('apartments/', include('apartments.urls')),
     path('tenants/', include('tenants.urls')),
+    path('about-me/', about_me),
+    path('elements-list/', elements_list),
 ]
