@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
+from users.forms import RegisterForm
 
 # Create your views here.
 
@@ -29,3 +30,22 @@ def login_view(request):
             'errors':'Incorrect User or password!'
         }
         return render(request, 'users/login.html', context=context)
+
+def register(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        context ={
+            'form':form
+        }
+        return render(request, 'users/register.html', context=context)
+    elif request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save() 
+            #UserProfile.objects.create(user=user)
+            return redirect('login')        
+        context = {
+            'errors':form.errors,
+            'form':RegisterForm()
+        }
+        return render(request, 'users/register.html', context=context)
