@@ -3,6 +3,7 @@ from django.shortcuts import render
 from apartments.models import Apartment
 from rentals.models import Rent
 from tenants.models import Tenant
+from real_estate_management.settings import MEDIA_ROOT
 
 def about_me(request):
     context = {
@@ -13,7 +14,7 @@ def about_me(request):
         'project':'Project is about apartment rentals, so applications need to be able to handle apartments, tenants and rental objects, and their relationships.',
         'country':'Argentina',
         'location':'Mendoza',
-        'picture':"{% static 'images/profile2.jpg' %}",
+        'picture': MEDIA_ROOT + 'profile2.jpg',
     }
     return render(request, 'about/about-me.html', context=context)
 

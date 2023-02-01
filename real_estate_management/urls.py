@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from real_estate_management.views import about_me, elements_list, index
+from django.conf.urls.static import static
+from real_estate_management.settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,4 @@ urlpatterns = [
     path('elements-list/', elements_list),
     path('users/', include('users.urls')),
     path('', index, name='index'),    
-]
+] + static(MEDIA_URL, document_root = MEDIA_ROOT)

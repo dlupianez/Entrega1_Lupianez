@@ -7,4 +7,5 @@ class Rent(models.Model):
     payday=models.DateField()
     total_paid=models.FloatField()
     debt=models.FloatField()
-    receipt_of_payent=models.IntegerField()
+    receipt_of_payment=models.IntegerField()
+    has_debt=models.BooleanField(default=False)    
