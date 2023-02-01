@@ -46,6 +46,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/about-me/">About me</a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/logout/">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/update/">{{request.user.username}}</a>
+                    </li>
+                        {% if request.user.profile.profile_picture.url != '' %}
+                            <img src="{{request.user.profile.profile_picture.url}}" alt="profile_picture" width="50px" height="50px">
+                        {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login/">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/signup/">Signup</a>
+                    </li>
+                {% endif %}
                 </ul>
                 
                 <form class="form-inline my-2 my-lg-0" action="/apartments/apartments-list-search/" method="GET">

@@ -27,3 +27,6 @@ def elements_list(request):
         'tenants':all_tenants,
     }
     return render(request, 'elements-list.html', context=context)
+
+def index(request):
+    return render(request, 'index.html', context={})
