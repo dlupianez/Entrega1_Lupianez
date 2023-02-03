@@ -30,4 +30,8 @@ def elements_list(request):
     return render(request, 'elements-list.html', context=context)
 
 def index(request):
-    return render(request, 'index.html', context={})
+    all_apartments = Apartment.objects.all()
+    context = {
+        'apartments':all_apartments,        
+    }
+    return render(request, 'index.html', context=context)
