@@ -99,7 +99,8 @@ def update_user_profile(request):
     elif request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            user.profile.phone = form.cleaned_data.get('phone')            
+            user.profile.phone = form.cleaned_data.get('phone')   
+            user.profile.linkedin_profile = form.cleaned_data.get('linkedin_profile')          
             user.profile.profile_picture = form.cleaned_data.get('profile_picture')
             user.profile.save()
             return redirect('index')
