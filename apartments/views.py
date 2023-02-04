@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from apartments.models import Apartment
@@ -31,5 +31,11 @@ def list_apartments_search(request):
 class ApartmentUpdateView(UpdateView):
     model = Apartment
     template_name = 'apartments/apartment-update.html'
+    fields = '__all__'
+    success_url = '/apartments/apartments-list/'
+
+class ApartmentDeleteView(DeleteView):
+    model = Apartment
+    template_name = 'apartments/apartment-delete.html'
     fields = '__all__'
     success_url = '/apartments/apartments-list/'

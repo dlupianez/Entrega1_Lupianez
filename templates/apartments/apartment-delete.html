@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete confirmation
+{% endblock %}
+
+{% block content %}
+    <h2>Apartment to delete {{object.door_number}}</h2>
+    <p>Are you sure yo want to delete it?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+{% endblock %}

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rentals.models import Rent
 
@@ -16,5 +16,11 @@ class RentCreateView(LoginRequiredMixin, CreateView):
 class RentUpdateView(UpdateView):
     model = Rent
     template_name = 'rentals/rent-update.html'
+    fields = '__all__'
+    success_url = '/rentals/rentals-list/'
+
+class RentDeleteView(DeleteView):
+    model = Rent
+    template_name = 'rentals/rent-delete.html'
     fields = '__all__'
     success_url = '/rentals/rentals-list/'

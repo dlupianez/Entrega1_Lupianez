@@ -26,8 +26,12 @@
             <p class="card-text">Garage value: {{apartment.garage_value}}</p>
             <p class="card-text">Expenses value: {{apartment.expenses_value}}</p>
             <p class="card-text">Total value: {{apartment.total_value}}</p>
-            <a href="/apartments/apartment-update/{{apartment.id}}" class="btn btn-primary">Update</a>
-
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="/apartments/apartment-update/{{apartment.id}}" class="btn btn-primary">Update</a>
+                    <a href="/apartments/apartment-delete/{{apartment.id}}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            {% endif %}
         </div>
         </div>
 

@@ -30,7 +30,12 @@
             <p class="card-text">Lastname: {{tenant.lastname}}</p>
             <p class="card-text">E-mail: {{tenant.email}}</p>
             <p class="card-text">Phone: {{tenant.phone}}</p>
-            <a href="/tenants/tenant-update/{{tenant.id}}" class="btn btn-primary">Update</a>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="/tenants/tenant-update/{{tenant.id}}" class="btn btn-primary">Update</a>
+                    <a href="/tenants/tenant-delete/{{tenant.id}}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            {% endif %}
         </div>
         </div>
 

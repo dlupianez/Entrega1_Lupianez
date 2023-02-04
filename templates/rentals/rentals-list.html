@@ -29,7 +29,12 @@
             <p class="card-text">Total paid: {{rent.total_paid}}</p>
             <p class="card-text">Debt: {{rent.debt}}</p>
             <p class="card-text">Receipt of payment: {{rent.receipt_of_payent}}</p>
-            <a href="/rentals/rent-update/{{rent.id}}" class="btn btn-primary">Update</a>
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="/rentals/rent-update/{{rent.id}}" class="btn btn-primary">Update</a>
+                    <a href="/rentals/rent-delete/{{rent.id}}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            {% endif %}
         </div>
         </div>
 
