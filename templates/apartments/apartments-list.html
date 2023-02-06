@@ -20,7 +20,11 @@
         <div class="card d-inline-flex p-2" style="width: 18rem;">
             <img src="{{apartment.apartment_picture.url}}" class="card-img-top">
             <div class="card-body">
-            <h5 class="card-title">Apartment number: {{apartment.door_number}}</h5>
+            {% if apartment.is_available %}
+                <h5 class="card-title  p-3 mb-2 bg-success text-white">Apartment number: {{apartment.door_number}}</h5>
+            {% else %}
+                <h5 class="card-title  p-3 mb-2 bg-secondary text-white">Apartment number: {{apartment.door_number}}</h5>
+            {% endif %}
             <p class="card-text">Rental value: {{apartment.rental_value}}</p>
             <p class="card-text">Garage value: {{apartment.garage_value}}</p>
             <p class="card-text">Expenses value: {{apartment.expenses_value}}</p>
