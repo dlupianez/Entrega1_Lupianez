@@ -17,7 +17,7 @@ At the navbar, I have included a search form for searching Apartments on door nu
 
 Please find the demo video here > media/Entrega1_Lupianez_06022023.mkv
 
-Also I have uploaded the video to python anywhere server here > 
+Also I have uploaded the video to python anywhere server here > dlupianez.pythonanywhere.com
 
 
 
