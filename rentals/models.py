@@ -1,9 +1,14 @@
 from django.db import models
+from apartments.models import Apartment
+from tenants.models import Tenant
+
 
 # Create your models here.
 
 class Rent(models.Model):
     """Definition of the Rent class"""
+    apartment = models.OneToOneField(Apartment, on_delete=models.CASCADE, related_name='apartment')
+    tenant = models.OneToOneField(Tenant, on_delete=models.CASCADE, related_name='tenant')    
     payday=models.DateField()
     total_paid=models.FloatField()
     debt=models.FloatField()
