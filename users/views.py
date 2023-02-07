@@ -22,16 +22,15 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                all_apartments = Apartment.objects.all()
                 context = {
-                    'message':f'Welcome {username}!'
+                    'apartments':all_apartments,
                 }
                 return render(request, 'index.html', context=context)
-        form = AuthenticationForm()
-        all_apartments = Apartment.objects.all()
+        form = AuthenticationForm()        
         context ={            
             'form':form,
-            'errors':'Incorrect User or password!',
-            'apartments':all_apartments,
+            'errors':'Incorrect User or password!',            
         }
         return render(request, 'users/login.html', context=context)
 
