@@ -7,8 +7,8 @@ from tenants.models import Tenant
 
 class Rent(models.Model):
     """Definition of the Rent class"""
-    apartment = models.OneToOneField(Apartment, on_delete=models.CASCADE, related_name='apartment')
-    tenant = models.OneToOneField(Tenant, on_delete=models.CASCADE, related_name='tenant')    
+    apartment = models.ForeignKey(Apartment, blank=False, null=False, on_delete=models.CASCADE, related_name='apartment')
+    tenant = models.ForeignKey(Tenant, blank=False, null=False, on_delete=models.CASCADE, related_name='tenant')
     payday=models.DateField()
     total_paid=models.FloatField()
     debt=models.FloatField()
