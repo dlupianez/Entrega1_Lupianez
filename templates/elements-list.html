@@ -9,8 +9,12 @@
     <h1>Apartments list</h1>
     
     {% for apartment in apartments %}
-    <ul class="list-group">
-        <li class="list-group-item active"><b>Apartment number: {{apartment.door_number}}</b></li>
+    <ul class="list-group d-inline-flex p-2">
+        {% if apartment.is_available %}
+            <li class="list-group-item active p-3 mb-2 bg-success text-white"><b>Apartment number: {{apartment.door_number}}</b></li>
+        {% else %}
+            <li class="list-group-item active p-3 mb-2 bg-secondary text-white"><b>Apartment number: {{apartment.door_number}}</b></li>
+        {% endif %}
         <li class="list-group-item">Rental value: {{apartment.rental_value}}</li>
         <li class="list-group-item">Garage value: {{apartment.garage_value}}</li>
         <li class="list-group-item">Expenses value: {{apartment.expenses_value}}</li>
@@ -20,18 +24,28 @@
     {% endfor %}
     <h1>Rentals list</h1>
     {% for rent in rents %}
-    <ul class="list-group">
-        <li class="list-group-item active"><b>Payday: {{rent.payday}}</b></li>
+    <ul class="list-group d-inline-flex p-2">
+        <li class="list-group-item active"><b>Apartment: {{rent.apartment.door_number}}</b></li>
+        <li class="list-group-item"><b>Tenant: {{rent.tenant.name}} {{rent.tenant.lastname}}</b></li>
+        <li class="list-group-item"><b>Payday: {{rent.payday}}</b></li>
         <li class="list-group-item">Total paid: {{rent.total_paid}}</li>
-        <li class="list-group-item">Debt: {{rent.debt}}</li>
-        <li class="list-group-item">Receipt of payment: {{rent.receipt_of_payent}}</li>
+        {% if rent.has_debt %}            
+            <li class="list-group-item p-3 mb-2 bg-danger text-white">Debt: {{rent.debt}}</li>
+        {% else %}
+            <li class="list-group-item">Debt: {{rent.debt}}</li>
+        {% endif %}        
+        <li class="list-group-item">Receipt of payment: {{rent.receipt_of_payment}}</li>
     </ul>
     <br>    
     {% endfor %}
     <h1>Tenants list</h1>
     {% for tenant in tenants %}    
-    <ul class="list-group">
-        <li class="list-group-item active"><b>Name: {{tenant.name}}</b></li>
+    <ul class="list-group d-inline-flex p-2">
+        {% if tenant.is_active %}
+            <li class="list-group-item active p-3 mb-2 bg-success text-white"><b>Name: {{tenant.name}}</b></li>
+        {% else %}
+            <li class="list-group-item active p-3 mb-2 bg-secondary text-white"><b>Name: {{tenant.name}}</b></li>
+        {% endif %}        
         <li class="list-group-item">Lastname: {{tenant.lastname}}</li>
         <li class="list-group-item">E-mail: {{tenant.email}}</li>
         <li class="list-group-item">Phone: {{tenant.phone}}</li>

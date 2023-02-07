@@ -25,7 +25,11 @@
         <div class="card d-inline-flex p-2" style="width: 18rem;">
             <img src="{{tenant.tenant_picture.url}}" class="card-img-top">
             <div class="card-body">
-            <h5 class="card-title">Name: {{tenant.name}}</h5>
+            {% if tenant.is_active %}
+                <h5 class="card-title active p-3 mb-2 bg-success text-white">Name: {{tenant.name}}</h5>
+            {% else %}
+                <h5 class="list-group-item active p-3 mb-2 bg-secondary text-white">Name: {{tenant.name}}</h5>
+            {% endif %}
             <p class="card-text">Lastname: {{tenant.lastname}}</p>
             <p class="card-text">E-mail: {{tenant.email}}</p>
             <p class="card-text">Phone: {{tenant.phone}}</p>
